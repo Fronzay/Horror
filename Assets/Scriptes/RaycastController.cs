@@ -4,16 +4,26 @@ using TMPro;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
 
 public class RaycastController : MonoBehaviour
 {
-     [SerializeField] Transform rayStart;
-     [SerializeField] LayerMask layerMask;
+
+     [SerializeField] string itog;
      [SerializeField] float distanceRay;
+
+     [SerializeField] Transform rayStart;
+     [SerializeField] GameObject lazers;
+
+     [SerializeField] LayerMask layerMask;
      [SerializeField] Ray ray;
      [SerializeField] RaycastHit hitInfo;
-     [SerializeField] string itog;
-     [SerializeField] GameObject lazers;
+
+     [SerializeField] AudioSource buttonClick;
+     [SerializeField] AudioSource rightCode;
+    
+     [SerializeField] AudioSource notRightCode;
+
 
     private void Update()
     {
@@ -26,63 +36,84 @@ public class RaycastController : MonoBehaviour
             if (hitInfo.collider.gameObject.CompareTag("1"))
             {
                 codePanel.text += '1';
+                buttonClick.Play();
             }
             if (hitInfo.collider.gameObject.CompareTag("2"))
             {
                 codePanel.text += '2';
+                buttonClick.Play();
             }
 
             if (hitInfo.collider.gameObject.CompareTag("3"))
             {
                 codePanel.text += '3';
+                buttonClick.Play();
             }
 
             if (hitInfo.collider.gameObject.CompareTag("4"))
             {
                 codePanel.text += '4';
+                buttonClick.Play();
             }
 
             if (hitInfo.collider.gameObject.CompareTag("5"))
             {
                 codePanel.text += '5';
+                buttonClick.Play();
             }
 
             if (hitInfo.collider.gameObject.CompareTag("6"))
             {
                 codePanel.text += '6';
+                buttonClick.Play();
             }
 
             if (hitInfo.collider.gameObject.CompareTag("7"))
             {
                 codePanel.text += '7';
+                buttonClick.Play();
             }
             if (hitInfo.collider.gameObject.CompareTag("8"))
             {
                 codePanel.text += '8';
+                buttonClick.Play();
             }
             if (hitInfo.collider.gameObject.CompareTag("9"))
             {
                 codePanel.text += '9';
+                buttonClick.Play();
             }
-
-            if ( codePanel.text.Length >= 4 && codePanel.text != itog)
-            {
-                Invoke(nameof(NullNumber), 1);
-            }
-
-            if (codePanel.text.Length >= 4 && codePanel.text == itog)
-            {
-                lazers.SetActive(false);
-            }
-
-            codePanel.text = codePanel.text.Substring(0, 4);
             
         }
+
+        if (codePanel.text.Length == 4 && codePanel.text != itog)
+        {
+            if (codePanel.text != itog)
+            {
+                notRightCode.Play();
+            }
+            Invoke(nameof(NullNumber), 1);
+        }
+
+        if (codePanel.text.Length == 4 && codePanel.text == itog)
+        {
+            if (codePanel.text == itog)
+            {
+                rightCode.Play();
+            }
+
+            lazers.SetActive(false);
+          
+        }
+
+        codePanel.text = codePanel.text[..4];
     }
 
     public void NullNumber()
     {
+
         codePanel.text = null;
+        
     }
 
     private void OnDrawGizmos()
@@ -136,6 +167,5 @@ public class RaycastController : MonoBehaviour
         _num4_.text = _num4;
 
         itog = _num1 + _num2 + _num3 + _num4;
-
     }
 }
