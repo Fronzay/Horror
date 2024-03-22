@@ -8,6 +8,9 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float gravity;
     [SerializeField] CharacterController characterController;
 
+    [SerializeField] AudioSource shagi;
+
+
     Vector3 direction;
     Vector3 velocity;
    
@@ -27,6 +30,7 @@ public class PlayerController : MonoBehaviour
         float x = Input.GetAxis("Horizontal");
         float z = Input.GetAxis("Vertical");
 
+
         direction = transform.right * x + transform.forward * z;
     }
 
@@ -40,4 +44,7 @@ public class PlayerController : MonoBehaviour
         velocity.y -= gravity * Time.deltaTime;
         characterController.Move(velocity * Time.deltaTime);
     }
+
+    
+
 }

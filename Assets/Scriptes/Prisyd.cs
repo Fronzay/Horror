@@ -26,7 +26,7 @@ public class Prisyd : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            playerController.speedCharacter = 2;
+            playerController.speedCharacter = 1;
             transform.localPosition = new Vector3(0, 0.100f, 0);
             controller.height = 1.16f;
             controller.center = new Vector3(0, -0.44f, 0);
@@ -38,7 +38,7 @@ public class Prisyd : MonoBehaviour
                 transform.localPosition = new Vector3(0, 0.574f, 0);
                 controller.height = 2;
                 controller.center = new Vector3(0, 0, 0);
-                playerController.speedCharacter = 4;
+                playerController.speedCharacter = 3;
             }
         }
     }

@@ -10,14 +10,15 @@ public class RaycastController : MonoBehaviour
 {
 
      [SerializeField] string itog;
-     [SerializeField] float distanceRay;
+     [SerializeField] public float distanceRay;
 
      [SerializeField] Transform rayStart;
      [SerializeField] GameObject lazers;
 
-     [SerializeField] LayerMask layerMask;
-     [SerializeField] Ray ray;
-     [SerializeField] RaycastHit hitInfo;
+     [SerializeField] public LayerMask layerMask;
+    [SerializeField] public LayerMask doors;
+    [SerializeField] public Ray ray;
+     [SerializeField] public RaycastHit hitInfo;
 
      [SerializeField] AudioSource buttonClick;
      [SerializeField] AudioSource rightCode;
@@ -112,8 +113,7 @@ public class RaycastController : MonoBehaviour
     public void NullNumber()
     {
 
-        codePanel.text = null;
-        
+        codePanel.text = string.Empty;     
     }
 
     private void OnDrawGizmos()
