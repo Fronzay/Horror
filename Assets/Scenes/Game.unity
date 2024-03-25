@@ -14586,7 +14586,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6507901977716847365, guid: 8550b9fc17f987a479586831d4ca22e3, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6830945432629781959, guid: 8550b9fc17f987a479586831d4ca22e3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -44721,7 +44721,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 987894579}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -96814,16 +96814,16 @@ MonoBehaviour:
   itog: 
   distanceRay: 5
   rayStart: {fileID: 2615585648413445502}
-  lazers: {fileID: 0}
+  lazers: {fileID: 1112991047}
   layerMask:
     serializedVersion: 2
     m_Bits: 8
   doors:
     serializedVersion: 2
     m_Bits: 64
-  buttonClick: {fileID: 0}
-  rightCode: {fileID: 0}
-  notRightCode: {fileID: 0}
+  buttonClick: {fileID: 1018073476}
+  rightCode: {fileID: 987894581}
+  notRightCode: {fileID: 987894581}
   num1: 0
   num2: 0
   num3: 0
@@ -96833,11 +96833,11 @@ MonoBehaviour:
   _num2: 
   _num3: 
   _num4: 
-  codePanel: {fileID: 0}
-  _num1_: {fileID: 0}
-  _num2_: {fileID: 0}
-  _num3_: {fileID: 0}
-  _num4_: {fileID: 0}
+  codePanel: {fileID: 1222159565}
+  _num1_: {fileID: 1457827002}
+  _num2_: {fileID: 753829259}
+  _num3_: {fileID: 1623975406}
+  _num4_: {fileID: 1569321785}
   nuM1: 0
   nuM2: 0
   nuM3: 0

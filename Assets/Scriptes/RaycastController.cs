@@ -98,13 +98,7 @@ public class RaycastController : MonoBehaviour
 
         if (codePanel.text.Length == 4 && codePanel.text == itog)
         {
-            if (codePanel.text == itog)
-            {
-                rightCode.Play();
-            }
-
             lazers.SetActive(false);
-          
         }
 
         codePanel.text = codePanel.text[..4];
