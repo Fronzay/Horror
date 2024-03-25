@@ -13,8 +13,10 @@ public class InscriptionsController : MonoBehaviour
     [SerializeField] TextMeshProUGUI inscriptions;
     [SerializeField] GameObject keySpalny;
 
+
     public DoorsController doorsController;
     public LightController lightController;
+    public LeverController leverController;
 
     [SerializeField] public bool lighting = false;
 
@@ -23,10 +25,12 @@ public class InscriptionsController : MonoBehaviour
         raycastController = FindAnyObjectByType<RaycastController>();
         doorsController = FindAnyObjectByType<DoorsController>();
         lightController = FindAnyObjectByType<LightController>();
+        leverController = FindAnyObjectByType<LeverController>();
     }
 
     private void Update()
     {
+
         if (Physics.Raycast(raycastController.ray, out raycastController.hitInfo, raycastController.distanceRay))
         {
 
@@ -36,65 +40,78 @@ public class InscriptionsController : MonoBehaviour
             }
             else if (raycastController.hitInfo.collider.gameObject.CompareTag("skladRoom"))
             {
-                inscriptions.text = "Склад";
+                inscriptions.text = "склад";
             }
             else if (raycastController.hitInfo.collider.gameObject.CompareTag("gRoom"))
             {
-                inscriptions.text = "Гостинная";
+                inscriptions.text = "гостинная";
             }
             else if (raycastController.hitInfo.collider.gameObject.CompareTag("sRoom"))
             {
-                inscriptions.text = "Спальня";
+                inscriptions.text = "спальня";
             }
             else if (raycastController.hitInfo.collider.gameObject.CompareTag("keyS"))
             {
-                inscriptions.text = "Ключ от спальни";
+                inscriptions.text = "ключ от спальни";
             }
             else if (raycastController.hitInfo.collider.gameObject.CompareTag("keyG"))
             {
-                inscriptions.text = "Ключ от гостинной";
+                inscriptions.text = "ключ от гостинной";
             }
             else if (raycastController.hitInfo.collider.gameObject.CompareTag("Ventel"))
             {
-                inscriptions.text = "Вентель";
+                inscriptions.text = "вентель";
             }
             else if (raycastController.hitInfo.collider.gameObject.CompareTag("Light1off") || raycastController.hitInfo.collider.gameObject.CompareTag("Light2off") || raycastController.hitInfo.collider.gameObject.CompareTag("Light1on") || raycastController.hitInfo.collider.gameObject.CompareTag("Light2on"))
             {
-                inscriptions.text = "Лампа вкл/выкл";
+                inscriptions.text = "лампа вкл/выкл";
             }
             else if (raycastController.hitInfo.collider.gameObject.CompareTag("pRoom"))
             {
-                inscriptions.text = "Подвал";
+                inscriptions.text = "подвал";
+            }
+            else if (raycastController.hitInfo.collider.gameObject.CompareTag("ExPRoom"))
+            {
+                inscriptions.text = "выход из подвала";
+            }
+            else if (raycastController.hitInfo.collider.gameObject.CompareTag("lever1") || raycastController.hitInfo.collider.gameObject.CompareTag("lever2") || raycastController.hitInfo.collider.gameObject.CompareTag("lever3") || raycastController.hitInfo.collider.gameObject.CompareTag("lever4") || raycastController.hitInfo.collider.gameObject.CompareTag("lever5"))
+            {
+                inscriptions.text = "рычаг";
             }
             else
             {
                 inscriptions.text = string.Empty;
             }
 
+
+
             if (Physics.Raycast(raycastController.ray, out raycastController.hitInfo, raycastController.distanceRay) && !keySpalny.activeSelf && Input.GetKey(KeyCode.E) && doorsController.openS == false)
             {
                 if (raycastController.hitInfo.collider.gameObject.CompareTag("sRoom"))
                 {
-                    inscriptions.text = "Нужен ключ";
+                    inscriptions.text = "нужен ключ";
                 }
 
                 if (raycastController.hitInfo.collider.gameObject.CompareTag("gRoom"))
                 {
-                    inscriptions.text = "Нужен ключ";
+                    inscriptions.text = "нужен ключ";
                 }
 
-            }  
-            
-        }
+            }
+                
+            if (Physics.Raycast(raycastController.ray, out raycastController.hitInfo, raycastController.distanceRay) && Input.GetKey(KeyCode.E)) {
 
-        if (!lighting && !lightController._light1off.activeSelf && !lightController._light2off.activeSelf && lightController._light1on.activeSelf && lightController._light2on.activeSelf)
-        {
-           
-        }
-    }
+                if (raycastController.hitInfo.collider.CompareTag("ExPRoom") && leverController.number < 5)
+                {
+                    inscriptions.text = "дверь заперта";
 
-    private void NullTXT()
-    {
-        inscriptions.text = string.Empty;
+                }
+                else
+                {
+                    
+                }
+            }
+        }           
+
     }
 }

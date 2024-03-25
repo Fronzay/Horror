@@ -11,6 +11,8 @@ public class DoorsController : MonoBehaviour
     public bool openS = false;
     public bool openG = false;
     public bool openP = false;
+    public bool num = false;
+
     [SerializeField] Animator sRoom;
     [SerializeField] Animator vRoom;
     [SerializeField] Animator skladRoom;
@@ -24,17 +26,22 @@ public class DoorsController : MonoBehaviour
     [SerializeField] AudioSource doorSound;
 
     public LightController lightController;
+    public InscriptionsController inscriptionsController;
+    public LeverController leverController;
 
     private void Start()
     {
         raycastController = FindAnyObjectByType<RaycastController>();
         lightController = FindAnyObjectByType<LightController>();
+        inscriptionsController = FindAnyObjectByType<InscriptionsController>();
+        leverController = FindAnyObjectByType<LeverController>();
     }
 
     private void Update()
     {
-        if (Physics.Raycast(raycastController.ray, out raycastController.hitInfo, raycastController.distanceRay, raycastController.doors) && Input.GetKeyUp(KeyCode.E))
-
+        bool ray = Physics.Raycast(raycastController.ray, out raycastController.hitInfo, raycastController.distanceRay, raycastController.doors) && Input.GetKeyUp(KeyCode.E);
+       
+        if ( ray )
         {
             if (raycastController.hitInfo.collider.CompareTag("vRoom") && !openV)
             {
@@ -73,10 +80,10 @@ public class DoorsController : MonoBehaviour
 
             if (raycastController.hitInfo.collider.CompareTag("gRoom") && !openG && keyGostinnay.activeSelf)
             {
-                keyGostinnay.SetActive(false);
                 openG = true;
                 gRoom.SetBool("Open", true);
                 doorSound.Play();
+                keyGostinnay.SetActive(false);
             }
 
             if (raycastController.hitInfo.collider.CompareTag("pRoom") && !openP && !lightController._light1off.activeSelf && !lightController._light2off.activeSelf && lightController._light1on.activeSelf && lightController._light2on.activeSelf)
@@ -93,6 +100,7 @@ public class DoorsController : MonoBehaviour
             }
 
         }
+
     }
 
     

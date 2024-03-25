@@ -28,6 +28,12 @@ TagManager:
   - Light1on
   - Light2on
   - pRoom
+  - lever1
+  - lever2
+  - lever3
+  - lever4
+  - lever5
+  - ExPRoom
   layers:
   - Default
   - TransparentFX
